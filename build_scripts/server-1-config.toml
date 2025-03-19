@@ -1,6 +1,12 @@
+# LocalConfig fields
 location = "local-1"
 server_id = 1
-num_clients = 1 # Hardcoded number of client connections to wait for
-listen_address = "127.0.0.1"
+listen_address = "0.0.0.0"
 listen_port = 8001
+num_clients = 1
 output_filepath = "./logs/server-1.json"
+
+# ClusterConfig fields
+nodes = [1, 2, 3]
+node_addrs = ["127.0.0.1:8001", "127.0.0.1:8002", "127.0.0.1:8003"]
+initial_leader = 1

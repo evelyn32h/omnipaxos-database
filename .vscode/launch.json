@@ -1,0 +1,104 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Server 1",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=server"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_LOG": "info",
+                "SERVER_ID": "1",
+                "DATABASE_URL": "sqlite:db1.sqlite",
+                "INITIAL_LEADER": "1",
+                "SERVER_CONFIG_FILE": ".\\build_scripts\\server-1-config.toml",
+                "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-1-config.toml",
+                "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Server 2",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=server"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_LOG": "info",
+                "SERVER_ID": "2",
+                "DATABASE_URL": "sqlite:db2.sqlite",
+                "INITIAL_LEADER": "1",
+                "SERVER_CONFIG_FILE": ".\\build_scripts\\server-2-config.toml",
+                "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-2-config.toml",
+                "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Server 3",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=server"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_LOG": "info",
+                "SERVER_ID": "3",
+                "DATABASE_URL": "sqlite:db3.sqlite",
+                "INITIAL_LEADER": "1",
+                "SERVER_CONFIG_FILE": ".\\build_scripts\\server-3-config.toml",
+                "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-3-config.toml",
+                "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Client",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=client"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_LOG": "info",
+                "CONFIG_FILE": ".\\client-config.toml"
+            }
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Test Client",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=test_client"
+                ]
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "env": {
+                "RUST_LOG": "info"
+            }
+        }
+    ]
+}

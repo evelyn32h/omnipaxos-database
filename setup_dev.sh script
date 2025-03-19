@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Set database URL to local SQLite database
+export DATABASE_URL="sqlite:./dev.sqlite"
+
+# Set server config file paths
+export SERVER_CONFIG_FILE="./server_config.toml"
+export CLUSTER_CONFIG_FILE="./server_config.toml"
+
+# Set server ID
+export SERVER_ID="1"
+
+# Set other necessary environment variables
+export INITIAL_LEADER="1"
+export OMNIPAXOS_NODE_ADDRS="localhost:8000"
+
+# Optional: Set log level
+export RUST_LOG=info
+
+echo "Development environment variables set, now you can run the server"

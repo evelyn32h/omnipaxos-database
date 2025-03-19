@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "cargo build",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Run Server 1",
+            "type": "shell",
+            "command": "cargo run --bin server",
+            "options": {
+                "env": {
+                    "RUST_LOG": "info",
+                    "SERVER_ID": "1",
+                    "DATABASE_URL": "sqlite:db1.sqlite",
+                    "INITIAL_LEADER": "1",
+                    "SERVER_CONFIG_FILE": ".\\build_scripts\\server-1-config.toml",
+                    "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-1-config.toml",
+                    "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+                }
+            }
+        },
+        {
+            "label": "Run Server 2",
+            "type": "shell",
+            "command": "cargo run --bin server",
+            "options": {
+                "env": {
+                    "RUST_LOG": "info",
+                    "SERVER_ID": "2",
+                    "DATABASE_URL": "sqlite:db2.sqlite",
+                    "INITIAL_LEADER": "1",
+                    "SERVER_CONFIG_FILE": ".\\build_scripts\\server-2-config.toml",
+                    "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-2-config.toml",
+                    "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+                }
+            }
+        },
+        {
+            "label": "Run Server 3",
+            "type": "shell",
+            "command": "cargo run --bin server",
+            "options": {
+                "env": {
+                    "RUST_LOG": "info",
+                    "SERVER_ID": "3",
+                    "DATABASE_URL": "sqlite:db3.sqlite",
+                    "INITIAL_LEADER": "1",
+                    "SERVER_CONFIG_FILE": ".\\build_scripts\\server-3-config.toml",
+                    "CLUSTER_CONFIG_FILE": ".\\build_scripts\\server-3-config.toml",
+                    "OMNIPAXOS_NODE_ADDRS": "127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003"
+                }
+            }
+        },
+        {
+            "label": "Run Client",
+            "type": "shell",
+            "command": "cargo run --bin client",
+            "options": {
+                "env": {
+                    "RUST_LOG": "info",
+                    "CONFIG_FILE": ".\\client-config.toml"
+                }
+            }
+        },
+        {
+            "label": "Run Test Client",
+            "type": "shell",
+            "command": "cargo run --bin test_client",
+            "options": {
+                "env": {
+                    "RUST_LOG": "info"
+                }
+            }
+        }
+    ]
+}

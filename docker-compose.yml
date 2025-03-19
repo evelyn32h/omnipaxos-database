@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  # First server node
+  server1:
+    build:
+      context: .
+      dockerfile: server.dockerfile
+    container_name: server1
+    environment:
+      SERVER_ID: "1"
+      DATABASE_URL: "sqlite:/app/db1.sqlite"  # Local SQLite file
+      INITIAL_LEADER: "1"
+      SERVER_CONFIG_FILE: "/app/server-1-config.toml"
+      CLUSTER_CONFIG_FILE: "/app/server-1-config.toml"
+      OMNIPAXOS_NODE_ADDRS: "server1:8000,server2:8000,server3:8000"
+    volumes:
+      - ./build_scripts/server-1-config.toml:/app/server-1-config.toml:ro
+      - ./logs:/app/logs
+      - ./data/sqlite:/app  # Persist SQLite database
+    ports:
+      - "8001:8000"
+
+  # Second server node
+  server2:
+    build:
+      context: .
+      dockerfile: server.dockerfile
+    container_name: server2
+    environment:
+      SERVER_ID: "2"
+      DATABASE_URL: "sqlite:/app/db2.sqlite"  # Local SQLite file
+      INITIAL_LEADER: "1"
+      SERVER_CONFIG_FILE: "/app/server-2-config.toml"
+      CLUSTER_CONFIG_FILE: "/app/server-2-config.toml"
+      OMNIPAXOS_NODE_ADDRS: "server1:8000,server2:8000,server3:8000"
+    volumes:
+      - ./build_scripts/server-2-config.toml:/app/server-2-config.toml:ro
+      - ./logs:/app/logs
+      - ./data/sqlite:/app  # Persist SQLite database
+    ports:
+      - "8002:8000"
+
+  # Third server node
+  server3:
+    build:
+      context: .
+      dockerfile: server.dockerfile
+    container_name: server3
+    environment:
+      SERVER_ID: "3"
+      DATABASE_URL: "sqlite:/app/db3.sqlite"  # Local SQLite file
+      INITIAL_LEADER: "1"
+      SERVER_CONFIG_FILE: "/app/server-3-config.toml"
+      CLUSTER_CONFIG_FILE: "/app/server-3-config.toml"
+      OMNIPAXOS_NODE_ADDRS: "server1:8000,server2:8000,server3:8000"
+    volumes:
+      - ./build_scripts/server-3-config.toml:/app/server-3-config.toml:ro
+      - ./logs:/app/logs
+      - ./data/sqlite:/app  # Persist SQLite database
+    ports:
+      - "8003:8000"
