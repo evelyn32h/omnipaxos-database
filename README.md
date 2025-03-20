@@ -2,6 +2,10 @@
 
 A distributed SQL database system built on [OmniPaxos](https://omnipaxos.com) consensus protocol with SQLite as the underlying storage engine. This project extends the original key-value store functionality to support SQL queries with variable consistency levels.
 
+## Team Members
+1. **Yingjia He**
+2. **Wenbo Xia**
+
 ## Features
 - **SQL Support**: Execute SQL queries in a distributed environment
 - **Variable Consistency**: Choose between three consistency levels (Leader, Local, Linearizable) for each read operation
